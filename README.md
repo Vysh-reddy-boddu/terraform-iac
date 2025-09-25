@@ -25,8 +25,8 @@ Provision a local Docker container using **Terraform** as part of Task 3: *Infra
    ```bash
    git clone https://github.com/Vysh-reddy-boddu/terraform-iac.git
    cd terraform-iac
-2. Initialize Terraform
-
+2. **Initialize Terraform**
+   '''bash
    terraform init
 
 
