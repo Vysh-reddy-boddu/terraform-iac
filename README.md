@@ -26,36 +26,37 @@ Provision a local Docker container using **Terraform** as part of Task 3: *Infra
    git clone https://github.com/Vysh-reddy-boddu/terraform-iac.git
    cd terraform-iac
 2. **Initialize Terraform**
-   '''bash
+   ```bash
    terraform init
 
 
-3. Check the plan
+3. **Check the plan**
 
    terraform plan
 
 
-4. Apply the configuration
+4. **Apply the configuration**
 
    terraform apply -auto-approve
 
 
-5. Verify Container
+5. **Verify Container**
 
    docker ps
 
 
 Open browser → http://localhost:8081 → You should see Welcome to Nginx!
 
-6. Check Terraform state
+6. **Check Terraform state**
 
    terraform state list
 
 
-7. Destroy the infrastructure
+7. **Destroy the infrastructure**
 
    terraform destroy -auto-approve
-8. Screenshot
+
+8. **Screenshot**
 
    ![Nginx Welcome Page](images/nginx_screenshot.png)
 
