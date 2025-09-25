@@ -31,29 +31,29 @@ Provision a local Docker container using **Terraform** as part of Task 3: *Infra
 
 
 3. **Check the plan**
-
-   terraform plan
+   ```bash
+   sudo terraform plan
 
 
 4. **Apply the configuration**
-
-   terraform apply -auto-approve
+   ```bash
+   sudo terraform apply -auto-approve
 
 
 5. **Verify Container**
-
-   docker ps
+   ```bash
+   sudo docker ps
 
 
 Open browser → http://localhost:8081 → You should see Welcome to Nginx!
 
 6. **Check Terraform state**
-
+   ```bash
    terraform state list
 
 
 7. **Destroy the infrastructure**
-
+   ```bash
    terraform destroy -auto-approve
 
 8. **Screenshot**
