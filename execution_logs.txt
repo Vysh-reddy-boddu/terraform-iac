@@ -1,0 +1,258 @@
+=== terraform init ===
+< Initializing the backend...
+Initializing provider plugins...
+- Reusing previous version of kreuzwerker/docker from the dependency lock file
+- Using previously-installed kreuzwerker/docker v2.20.3
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary. >
+
+=== terraform plan ===
+< Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # docker_container.nginx_container will be created
+  + resource "docker_container" "nginx_container" {
+      + attach           = false
+      + bridge           = (known after apply)
+      + command          = (known after apply)
+      + container_logs   = (known after apply)
+      + entrypoint       = (known after apply)
+      + env              = (known after apply)
+      + exit_code        = (known after apply)
+      + gateway          = (known after apply)
+      + hostname         = (known after apply)
+      + id               = (known after apply)
+      + image            = "nginx:latest"
+      + init             = (known after apply)
+      + ip_address       = (known after apply)
+      + ip_prefix_length = (known after apply)
+      + ipc_mode         = (known after apply)
+      + log_driver       = (known after apply)
+      + logs             = false
+      + must_run         = true
+      + name             = "my-nginx"
+      + network_data     = (known after apply)
+      + read_only        = false
+      + remove_volumes   = true
+      + restart          = "no"
+      + rm               = false
+      + runtime          = (known after apply)
+      + security_opts    = (known after apply)
+      + shm_size         = (known after apply)
+      + start            = true
+      + stdin_open       = false
+      + stop_signal      = (known after apply)
+      + stop_timeout     = (known after apply)
+      + tty              = false
+
+      + healthcheck (known after apply)
+
+      + labels (known after apply)
+
+      + ports {
+          + external = 8080
+          + internal = 80
+          + ip       = "0.0.0.0"
+          + protocol = "tcp"
+        }
+    }
+
+  # docker_image.nginx_image will be created
+  + resource "docker_image" "nginx_image" {
+      + id          = (known after apply)
+      + latest      = (known after apply)
+      + name        = "nginx:latest"
+      + output      = (known after apply)
+      + repo_digest = (known after apply)
+    }
+
+Plan: 2 to add, 0 to change, 0 to destroy.
+
+───────────────────────────────────────────────────────────────────────────
+
+Note: You didn't use the -out option to save this plan, so Terraform can't
+guarantee to take exactly these actions if you run "terraform apply" now. >
+
+=== terraform apply ===
+< docker_image.nginx_image: Refreshing state... [id=sha256:41f689c209100e6cadf3ce7fdd02035e90dbd1d586716bf8fc6ea55c365b2d81nginx:latest]
+docker_container.nginx_container: Refreshing state... [id=14b8c990f4cb68bb4e84f9c3601d84277eb7f3a930951dc91f258a35eca28b8f]
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # docker_container.nginx_container will be created
+  + resource "docker_container" "nginx_container" {
+      + attach           = false
+      + bridge           = (known after apply)
+      + command          = (known after apply)
+      + container_logs   = (known after apply)
+      + entrypoint       = (known after apply)
+      + env              = (known after apply)
+      + exit_code        = (known after apply)
+      + gateway          = (known after apply)
+      + hostname         = (known after apply)
+      + id               = (known after apply)
+      + image            = "nginx:latest"
+      + init             = (known after apply)
+      + ip_address       = (known after apply)
+      + ip_prefix_length = (known after apply)
+      + ipc_mode         = (known after apply)
+      + log_driver       = (known after apply)
+      + logs             = false
+      + must_run         = true
+      + name             = "my-nginx"
+      + network_data     = (known after apply)
+      + read_only        = false
+      + remove_volumes   = true
+      + restart          = "no"
+      + rm               = false
+      + runtime          = (known after apply)
+      + security_opts    = (known after apply)
+      + shm_size         = (known after apply)
+      + start            = true
+      + stdin_open       = false
+      + stop_signal      = (known after apply)
+      + stop_timeout     = (known after apply)
+      + tty              = false
+
+      + healthcheck (known after apply)
+
+      + labels (known after apply)
+
+      + ports {
+          + external = 8081
+          + internal = 80
+          + ip       = "0.0.0.0"
+          + protocol = "tcp"
+        }
+    }
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+docker_container.nginx_container: Creating...
+docker_container.nginx_container: Creation complete after 2s [id=af62797f14255cf48382f922a09fc9f950120a3a0fc7963ae65f996d22e45d2d]
+
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed. >
+
+=== terraform state list ===
+< docker_container.nginx_container 
+docker_image.nginx_image > 
+
+=== terraform destroy ===
+< docker_image.nginx_image: Refreshing state... [id=sha256:41f689c209100e6cadf3ce7fdd02035e90dbd1d586716bf8fc6ea55c365b2d81nginx:latest]
+docker_container.nginx_container: Refreshing state... [id=af62797f14255cf48382f922a09fc9f950120a3a0fc7963ae65f996d22e45d2d]
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  - destroy
+
+Terraform will perform the following actions:
+
+  # docker_container.nginx_container will be destroyed
+  - resource "docker_container" "nginx_container" {
+      - attach            = false -> null
+      - command           = [
+          - "nginx",
+          - "-g",
+          - "daemon off;",
+        ] -> null
+      - cpu_shares        = 0 -> null
+      - dns               = [] -> null
+      - dns_opts          = [] -> null
+      - dns_search        = [] -> null
+      - entrypoint        = [
+          - "/docker-entrypoint.sh",
+        ] -> null
+      - env               = [] -> null
+      - gateway           = "172.17.0.1" -> null
+      - group_add         = [] -> null
+      - hostname          = "af62797f1425" -> null
+      - id                = "af62797f14255cf48382f922a09fc9f950120a3a0fc7963ae65f996d22e45d2d" -> null
+      - image             = "sha256:41f689c209100e6cadf3ce7fdd02035e90dbd1d586716bf8fc6ea55c365b2d81" -> null
+      - init              = false -> null
+      - ip_address        = "172.17.0.2" -> null
+      - ip_prefix_length  = 16 -> null
+      - ipc_mode          = "private" -> null
+      - links             = [] -> null
+      - log_driver        = "json-file" -> null
+      - log_opts          = {} -> null
+      - logs              = false -> null
+      - max_retry_count   = 0 -> null
+      - memory            = 0 -> null
+      - memory_swap       = 0 -> null
+      - must_run          = true -> null
+      - name              = "my-nginx" -> null
+      - network_data      = [
+          - {
+              - gateway                   = "172.17.0.1"
+              - global_ipv6_prefix_length = 0
+              - ip_address                = "172.17.0.2"
+              - ip_prefix_length          = 16
+              - network_name              = "bridge"
+                # (2 unchanged attributes hidden)
+            },
+        ] -> null
+      - network_mode      = "bridge" -> null
+      - privileged        = false -> null
+      - publish_all_ports = false -> null
+      - read_only         = false -> null
+      - remove_volumes    = true -> null
+      - restart           = "no" -> null
+      - rm                = false -> null
+      - runtime           = "runc" -> null
+      - security_opts     = [] -> null
+      - shm_size          = 64 -> null
+      - start             = true -> null
+      - stdin_open        = false -> null
+      - stop_signal       = "SIGQUIT" -> null
+      - stop_timeout      = 0 -> null
+      - storage_opts      = {} -> null
+      - sysctls           = {} -> null
+      - tmpfs             = {} -> null
+      - tty               = false -> null
+        # (7 unchanged attributes hidden)
+
+      - ports {
+          - external = 8081 -> null
+          - internal = 80 -> null
+          - ip       = "0.0.0.0" -> null
+          - protocol = "tcp" -> null
+        }
+    }
+
+  # docker_image.nginx_image will be destroyed
+  - resource "docker_image" "nginx_image" {
+      - id          = "sha256:41f689c209100e6cadf3ce7fdd02035e90dbd1d586716bf8fc6ea55c365b2d81nginx:latest" -> null
+      - latest      = "sha256:41f689c209100e6cadf3ce7fdd02035e90dbd1d586716bf8fc6ea55c365b2d81" -> null
+      - name        = "nginx:latest" -> null
+      - repo_digest = "nginx@sha256:d5f28ef21aabddd098f3dbc21fe5b7a7d7a184720bc07da0b6c9b9820e97f25e" -> null
+    }
+
+Plan: 0 to add, 0 to change, 2 to destroy.
+
+Do you really want to destroy all resources?
+  Terraform will destroy all your managed infrastructure, as shown above.
+  There is no undo. Only 'yes' will be accepted to confirm.
+
+  Enter a value: yes
+
+docker_container.nginx_container: Destroying... [id=af62797f14255cf48382f922a09fc9f950120a3a0fc7963ae65f996d22e45d2d]
+docker_container.nginx_container: Destruction complete after 0s
+docker_image.nginx_image: Destroying... [id=sha256:41f689c209100e6cadf3ce7fdd02035e90dbd1d586716bf8fc6ea55c365b2d81nginx:latest]
+docker_image.nginx_image: Destruction complete after 2s
+
+Destroy complete! Resources: 2 destroyed. >
+  
